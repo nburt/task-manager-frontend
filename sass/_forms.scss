@@ -1,0 +1,28 @@
+input[type="text"], textarea {
+  border-radius: 3px;
+  border: none;
+  color: $dark-gray;
+  background: $white;
+}
+
+label {
+  font-weight: bold;
+}
+
+label,input, textarea {
+  display: block;
+  outline-color: $blue;
+}
+
+input {
+  height: 2.5em;
+}
+
+textarea {
+  height: 10em;
+  width: 25em;
+}
+
+.form-field {
+  margin: 0.75em 0;
+}

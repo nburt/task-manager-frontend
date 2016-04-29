@@ -21,8 +21,8 @@ var TaskManager = React.createClass({
     render: function () {
         return (
             <div className="task-manager-box">
-                <h1>Task Manager</h1>
-                <NewTaskForm url="https://morning-hollows-57260.herokuapp.com/tasks" handleTaskSubmit={this.handleTaskSubmit}/>
+                <NewTaskForm url="https://morning-hollows-57260.herokuapp.com/tasks"
+                             handleTaskSubmit={this.handleTaskSubmit}/>
                 <TasksList tasks={this.state.tasks}/>
             </div>
         );
@@ -56,11 +56,19 @@ var NewTaskForm = React.createClass({
     render: function () {
         return (
             <form className="newTaskForm" onSubmit={this.handleSubmit}>
-                <label htmlFor="task-name">Name</label>
-                <input type="text" id="task-name" value={this.state.name} onChange={this.handleNameChange}/>
-                <label htmlFor="task-description">Description</label>
-                <textarea id="task-description" value={this.state.description} onChange={this.handleDescriptionChange}></textarea>
-                <input type="submit" value="Create Task"/>
+                <div className="form-field">
+                    <label htmlFor="task-name">Name</label>
+                    <input type="text" id="task-name" value={this.state.name} onChange={this.handleNameChange}/>
+                </div>
+                <div className="form-field">
+                    <label htmlFor="task-description">Description</label>
+                    <textarea id="task-description" value={this.state.description}
+                              onChange={this.handleDescriptionChange}>
+                    </textarea>
+                </div>
+                <div className="form-field">
+                    <input type="submit" value="Create Task" className="button button-primary"/>
+                </div>
             </form>
         );
     }
@@ -69,23 +77,23 @@ var NewTaskForm = React.createClass({
 var TasksList = React.createClass({
     render: function () {
         return (
-            <table>
+            <table className="table">
                 <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th></th>
+                <tr className="columns">
+                    <th className="column fourth">Name</th>
+                    <th className="column fourth">Description</th>
+                    <th className="column fourth no-border">&nbsp;</th>
                 </tr>
                 </thead>
                 <tbody>
                 {this.props.tasks.map(function (task, i) {
                     return (
-                        <tr key={i}>
-                            <th>{task.id}</th>
-                            <th>{task.name}</th>
-                            <th>{task.description}</th>
-                            <th><a href="https://morning-hollows-57260.herokuapp.com/tasks/1">Detail</a></th>
+                        <tr key={i} className="columns">
+                            <td className="column fourth">{task.name}</td>
+                            <td className="column fourth">{task.description}</td>
+                            <td className="column fourth">
+                                <a href="https://morning-hollows-57260.herokuapp.com/tasks/1">Detail</a>
+                            </td>
                         </tr>
                     )
                 })}

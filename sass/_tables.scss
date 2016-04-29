@@ -1,0 +1,23 @@
+table {
+  border-collapse: collapse;
+  margin: .25em 0;
+  table-layout: fixed;
+  width: 100%;
+}
+
+th {
+  font-weight: bold;
+  padding: .25em 0;
+  text-align: left;
+}
+
+td {
+  border-bottom: 1px;
+  padding: .25em 0;
+}
+
+tr,
+td,
+th {
+  vertical-align: middle;
+}

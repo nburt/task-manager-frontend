@@ -1,0 +1,12 @@
+html, body {
+  height: 100%;
+}
+
+html {
+  background: $light-gray;
+}
+
+main {
+  @include outer-container;
+}
+

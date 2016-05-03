@@ -17,8 +17,8 @@ class TaskItem extends Component {
         return (
             <tr className="columns">
                 <td className="column fourth"><input type="checkbox" checked={task.completed} onChange={this.handleCompletedChange}/></td>
-                <td className="column fourth">{task.name}</td>
-                <td className="column fourth">{task.description}</td>
+                <td className={"column fourth" + (task.completed ? " line-through" : "")}>{task.name}</td>
+                <td className={"column fourth" + (task.completed ? " line-through" : "")}>{task.description}</td>
             </tr>
         )
     }

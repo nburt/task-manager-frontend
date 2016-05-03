@@ -4,13 +4,12 @@
   "description": "React frontend for task manager",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp build-prod",
     "start": "node server.js"
   },
   "author": "Nathanael Burt",
   "license": "MIT",
   "dependencies": {
-    "babel-polyfill": "^6.7.4",
     "es6-promise": "^3.1.2",
     "express": "^4.13.4",
     "gulp": "^3.9.1",
@@ -32,10 +31,10 @@
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.1",
     "gulp-sass": "^2.3.1",
+    "gulp-util": "^3.0.7",
     "node-bourbon": "^4.2.8",
     "node-neat": "^1.7.2",
-    "webpack": "^1.13.0",
-    "webpack-dev-server": "^1.14.1"
+    "webpack": "^1.13.0"
   },
   "babel": {
     "presets": [

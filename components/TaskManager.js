@@ -16,11 +16,11 @@ class TaskManager extends Component {
     }
 
     render() {
-        const {url, tasks} = this.props;
+        const {url, tasks, actions} = this.props;
         return (
             <div>
                 <NewTaskForm url={url} handleTaskSubmit={this.handleTaskSubmit}/>
-                <TaskList tasks={tasks}/>
+                <TaskList url={url} tasks={tasks} actions={actions}/>
             </div>
         )
     }

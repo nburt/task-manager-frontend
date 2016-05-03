@@ -8,6 +8,38 @@ export function addTask(id, name, description) {
     }
 }
 
+function requestTaskUpdate() {
+    return {
+        type: types.REQUEST_UPDATE_TASK
+    }
+}
+
+function receiveTaskUpdate(json) {
+    return {
+        type: types.RECEIVE_UPDATE_TASK,
+        task: json
+    }
+}
+
+export function updateTask(id, name, description, completed) {
+    var headers = new Headers({'Accept': 'application/json', 'Content-Type': 'application/json'});
+
+    var init = {
+        method: 'PUT',
+        headers: headers,
+        mode: 'cors',
+        cache: 'default',
+        body: JSON.stringify({name: name, description: description, completed: completed})
+    };
+
+    return dispatch => {
+        dispatch(requestTaskUpdate());
+        return fetch('https://morning-hollows-57260.herokuapp.com/tasks/' + id, init)
+            .then(response => response.json())
+            .then(json => dispatch(receiveTaskUpdate(json)))
+    }
+}
+
 function requestTasks() {
     return {
         type: types.REQUEST_TASKS

@@ -7,7 +7,7 @@ class NewTaskForm extends Component {
         this.state = {
             name: this.props.name || '',
             description: this.props.description || ''
-        }
+        };
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);

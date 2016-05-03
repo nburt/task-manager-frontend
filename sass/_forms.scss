@@ -14,7 +14,7 @@ label,input, textarea {
   outline-color: $blue;
 }
 
-input {
+input[type="text"] {
   height: 2.5em;
 }
 

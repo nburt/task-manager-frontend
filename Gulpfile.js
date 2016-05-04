@@ -6,9 +6,9 @@ var shell = require('gulp-shell');
 
 gulp.task('styles', function () {
     gulp.src('sass/**/*.scss')
-        .pipe(sass({
-            includePaths: ['styles'].concat(neat)
-        }).on('error', sass.logError))
+        .pipe(sass(
+            {includePaths: ['styles'].concat(neat), outputStyle: 'compressed'}
+        ).on('error', sass.logError))
         .pipe(gulp.dest('./css/'));
 });
 
@@ -20,4 +20,4 @@ gulp.task('build-dev', ['webpack', 'styles', 'watch']);
 
 gulp.task('build-prod', ['webpack', 'styles']);
 
-gulp.task('webpack', shell.task(['webpack --display-error-details']));
+gulp.task('webpack', shell.task(['webpack --optimize-minimize']));

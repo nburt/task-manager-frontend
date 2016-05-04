@@ -16,8 +16,10 @@ gulp.task('watch', function () {
     gulp.watch('sass/**/*.scss', ['styles']);
 });
 
-gulp.task('build-dev', ['webpack', 'styles', 'watch']);
+gulp.task('build-dev', ['webpack-dev', 'styles', 'watch']);
 
-gulp.task('build-prod', ['webpack', 'styles']);
+gulp.task('build-prod', ['webpack-prod', 'styles']);
 
-gulp.task('webpack', shell.task(['webpack --optimize-minimize']));
+gulp.task('webpack-dev', shell.task(['webpack']));
+
+gulp.task('webpack-prod', shell.task(['webpack --optimize-minimize']));

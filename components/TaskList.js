@@ -15,20 +15,11 @@ class TaskList extends Component {
     render() {
         const { tasks } = this.props;
         return (
-            <table className="table">
-                <thead>
-                <tr className="columns">
-                    <th className="column fourth">Completed</th>
-                    <th className="column fourth">Name</th>
-                    <th className="column fourth">Description</th>
-                </tr>
-                </thead>
-                <tbody>
+            <ul className="columns">
                 {tasks.map(task =>
                     <TaskItem key={task.id} task={task} handleTaskUpdate={this.handleTaskUpdate}/>
                 )}
-                </tbody>
-            </table>
+            </ul>
         )
     }
 }

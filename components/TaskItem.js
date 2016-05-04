@@ -15,11 +15,14 @@ class TaskItem extends Component {
     render() {
         const { task } = this.props;
         return (
-            <tr className="columns">
-                <td className="column fourth"><input type="checkbox" checked={task.completed} onChange={this.handleCompletedChange}/></td>
-                <td className={"column fourth" + (task.completed ? " line-through" : "")}>{task.name}</td>
-                <td className={"column fourth" + (task.completed ? " line-through" : "")}>{task.description}</td>
-            </tr>
+            <li className="column full">
+                <input id={"task-completed-" + (task.id)} type="checkbox" checked={task.completed} onChange={this.handleCompletedChange}/>
+                <label className={(task.completed ? " line-through" : "")} htmlFor={"task-completed-" + (task.id)}>
+                    {task.name}
+                </label>
+                <p className={(task.completed ? "line-through" : "")}>{task.description}</p>
+            </li>
+
         )
     }
 }

@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, {Component, PropTypes} from 'react'
 
 class NewTaskForm extends Component {
 
@@ -36,18 +36,24 @@ class NewTaskForm extends Component {
     render() {
         return (
             <form className="newTaskForm" onSubmit={this.handleSubmit}>
-                <div className="form-field">
-                    <label htmlFor="task-name">Name</label>
-                    <input type="text" id="task-name" value={this.state.name} onChange={this.handleNameChange}/>
+                <div className="columns">
+                    <div className="form-field column half">
+                        <label htmlFor="task-name">Name</label>
+                        <input type="text" id="task-name" value={this.state.name} onChange={this.handleNameChange}/>
+                    </div>
                 </div>
-                <div className="form-field">
-                    <label htmlFor="task-description">Description</label>
+                <div className="columns">
+                    <div className="form-field column half">
+                        <label htmlFor="task-description">Description</label>
                     <textarea id="task-description" value={this.state.description}
                               onChange={this.handleDescriptionChange}>
                     </textarea>
+                    </div>
                 </div>
-                <div className="form-field">
-                    <input type="submit" value="Create Task" className="button button-primary"/>
+                <div className="columns">
+                    <div className="form-field column half">
+                        <input type="submit" value="Create Task" className="button button-primary"/>
+                    </div>
                 </div>
             </form>
         )

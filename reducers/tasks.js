@@ -1,16 +1,16 @@
-import {ADD_TASK, RECEIVE_TASKS, RECEIVE_UPDATE_TASK} from '../constants/ActionTypes'
+import {RECEIVE_CREATE_TASK, RECEIVE_TASKS, RECEIVE_UPDATE_TASK} from '../constants/ActionTypes'
 
 export default function tasks(state = {tasks: []}, action) {
     switch (action.type) {
-        case ADD_TASK:
+        case RECEIVE_CREATE_TASK:
             return {
                 tasks: [
                     ...state.tasks,
                     {
-                        id: action.id,
-                        name: action.name,
-                        description: action.description,
-                        completed: action.completed
+                        id: action.task.id,
+                        name: action.task.name,
+                        description: action.task.description,
+                        completed: action.task.completed
                     }
                 ]
             };

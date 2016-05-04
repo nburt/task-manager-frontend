@@ -10,9 +10,7 @@ class TaskManager extends Component {
     }
 
     handleTaskSubmit(task) {
-        $.post(this.props.url, {name: task.name, description: task.description}, function (task) {
-            this.props.actions.addTask(task.id, task.name, task.description);
-        }.bind(this));
+        this.props.actions.createTask(task.name, task.description, false);
     }
 
     render() {

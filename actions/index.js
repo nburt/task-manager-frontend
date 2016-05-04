@@ -2,9 +2,35 @@ import * as types from '../constants/ActionTypes'
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
-export function addTask(id, name, description) {
+function requestTaskCreate(id, name, description, completed) {
     return {
-        type: types.ADD_TASK, id, name, description
+        type: types.REQUEST_CREATE_TASK, id, name, description, completed
+    }
+}
+
+function receiveTaskCreate(json) {
+    return {
+        type: types.RECEIVE_CREATE_TASK,
+        task: json
+    }
+}
+
+export function createTask(name, description, completed) {
+    var headers = new Headers({'Accept': 'application/json', 'Content-Type': 'application/json'});
+
+    var init = {
+        method: 'POST',
+        headers: headers,
+        mode: 'cors',
+        cache: 'default',
+        body: JSON.stringify({name: name, description: description, completed: completed})
+    };
+
+    return dispatch => {
+        dispatch(requestTaskCreate());
+        return fetch('https://morning-hollows-57260.herokuapp.com/tasks', init)
+            .then(response => response.json())
+            .then(json => dispatch(receiveTaskCreate(json)))
     }
 }
 

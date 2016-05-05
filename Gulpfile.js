@@ -14,6 +14,7 @@ gulp.task('styles', function () {
 
 gulp.task('watch', function () {
     gulp.watch('sass/**/*.scss', ['styles']);
+    gulp.watch(['actions', 'components', 'constants', 'containers', 'reducers', 'store', 'index.js'], ['webpack-dev']);
 });
 
 gulp.task('build-dev', ['webpack-dev', 'styles', 'watch']);

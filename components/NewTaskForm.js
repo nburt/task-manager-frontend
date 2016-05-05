@@ -39,7 +39,7 @@ class NewTaskForm extends Component {
                 <div className="columns">
                     <div className="form-field column half">
                         <label htmlFor="task-name">Name</label>
-                        <input type="text" id="task-name" value={this.state.name} onChange={this.handleNameChange}/>
+                        <input autoFocus type="text" id="task-name" value={this.state.name} onChange={this.handleNameChange}/>
                     </div>
                 </div>
                 <div className="columns">

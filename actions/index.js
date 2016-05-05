@@ -1,16 +1,17 @@
 import * as types from '../constants/ActionTypes'
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
+const baseApiUrl = 'https://morning-hollows-57260.herokuapp.com';
 
 function requestTaskCreate(id, name, description, completed) {
     return {
-        type: types.REQUEST_CREATE_TASK, id, name, description, completed
+        type: types.REQUEST_TASK_CREATE, id, name, description, completed
     }
 }
 
 function receiveTaskCreate(json) {
     return {
-        type: types.RECEIVE_CREATE_TASK,
+        type: types.RECEIVE_TASK_CREATE,
         task: json
     }
 }
@@ -28,7 +29,7 @@ export function createTask(name, description, completed) {
 
     return dispatch => {
         dispatch(requestTaskCreate());
-        return fetch('https://morning-hollows-57260.herokuapp.com/tasks', init)
+        return fetch(baseApiUrl + '/tasks', init)
             .then(response => response.json())
             .then(json => dispatch(receiveTaskCreate(json)))
     }
@@ -36,13 +37,13 @@ export function createTask(name, description, completed) {
 
 function requestTaskUpdate() {
     return {
-        type: types.REQUEST_UPDATE_TASK
+        type: types.REQUEST_TASK_UPDATE
     }
 }
 
 function receiveTaskUpdate(json) {
     return {
-        type: types.RECEIVE_UPDATE_TASK,
+        type: types.RECEIVE_TASK_UPDATE,
         task: json
     }
 }
@@ -60,7 +61,7 @@ export function updateTask(id, name, description, completed) {
 
     return dispatch => {
         dispatch(requestTaskUpdate());
-        return fetch('https://morning-hollows-57260.herokuapp.com/tasks/' + id, init)
+        return fetch(baseApiUrl + '/tasks/' + id, init)
             .then(response => response.json())
             .then(json => dispatch(receiveTaskUpdate(json)))
     }
@@ -82,8 +83,37 @@ function receiveTasks(json) {
 export function fetchTasks() {
     return dispatch => {
         dispatch(requestTasks());
-        return fetch(`https://morning-hollows-57260.herokuapp.com/tasks`)
+        return fetch(baseApiUrl + '/tasks')
             .then(response => response.json())
             .then(json => dispatch(receiveTasks(json)))
+    }
+}
+
+function requestTaskDelete() {
+    return {
+        type: types.REQUEST_TASK_DELETE
+    }
+}
+
+function receiveTaskDelete(id) {
+    return {
+        type: types.RECEIVE_TASK_DELETE, id
+    }
+}
+
+export function deleteTask(id) {
+    var headers = new Headers({'Accept': 'application/json', 'Content-Type': 'application/json'});
+
+    var init = {
+        method: 'DELETE',
+        headers: headers,
+        mode: 'cors',
+        cache: 'default'
+    };
+
+    return dispatch => {
+        dispatch(requestTaskDelete());
+        return fetch(baseApiUrl + '/tasks/' + id, init)
+            .then(dispatch(receiveTaskDelete(id)))
     }
 }

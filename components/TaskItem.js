@@ -5,12 +5,17 @@ class TaskItem extends Component {
         super(props, context);
 
         this.handleCompletedChange = this.handleCompletedChange.bind(this);
+        this.handleDeleteTask = this.handleDeleteTask.bind(this);
     }
 
     handleCompletedChange() {
         let task = this.props.task;
-        this.props.handleTaskUpdate({id: task.id, name: task.name, description: task.description, completed: !task.completed});
-    };
+        this.props.actions.updateTask(task.id, task.name, task.description, !task.completed);
+    }
+
+    handleDeleteTask() {
+        this.props.actions.deleteTask(this.props.task.id)
+    }
 
     render() {
         const { task } = this.props;
@@ -19,6 +24,7 @@ class TaskItem extends Component {
                 <input id={"task-completed-" + (task.id)} type="checkbox" checked={task.completed} onChange={this.handleCompletedChange}/>
                 <label className={(task.completed ? " line-through" : "")} htmlFor={"task-completed-" + (task.id)}>
                     {task.name}
+                    <i className="fa fa-times delete-task" aria-hidden="true" onClick={this.handleDeleteTask}></i>
                 </label>
                 <p className={(task.completed ? "line-through" : "")}>{task.description}</p>
             </li>

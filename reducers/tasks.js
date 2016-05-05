@@ -1,8 +1,8 @@
-import {RECEIVE_CREATE_TASK, RECEIVE_TASKS, RECEIVE_UPDATE_TASK} from '../constants/ActionTypes'
+import {RECEIVE_TASK_CREATE, RECEIVE_TASKS, RECEIVE_TASK_UPDATE, RECEIVE_TASK_DELETE} from '../constants/ActionTypes'
 
 export default function tasks(state = {tasks: []}, action) {
     switch (action.type) {
-        case RECEIVE_CREATE_TASK:
+        case RECEIVE_TASK_CREATE:
             return {
                 tasks: [
                     ...state.tasks,
@@ -16,7 +16,7 @@ export default function tasks(state = {tasks: []}, action) {
             };
         case RECEIVE_TASKS:
             return Object.assign({}, state, {tasks: action.tasks});
-        case RECEIVE_UPDATE_TASK:
+        case RECEIVE_TASK_UPDATE:
             return {
                 tasks: state.tasks.map(task => {
                         if (task.id === action.task.id) {
@@ -32,6 +32,12 @@ export default function tasks(state = {tasks: []}, action) {
                     }
                 )
 
+            };
+        case RECEIVE_TASK_DELETE:
+            return {
+                tasks: state.tasks.filter(task =>
+                    task.id !== action.id
+                )
             };
         default:
             return state
